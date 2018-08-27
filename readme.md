@@ -227,7 +227,7 @@ class MongoPipeline(object):
 class W2mysql(object):
     def process_item(self, item, spider):
         '''
-        将爬取的信息保存到mysql
+        将爬取的信息保存到mysql,记得修改password
         '''
         connection = pymysql.connect(host='localhost', user='root', password='xxxxxx', db='scrapydb',
                                      charset='utf8mb4')
