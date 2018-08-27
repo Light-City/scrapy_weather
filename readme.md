@@ -1,10 +1,3 @@
----
-title: Scrapy框架之爬取城市天气预报
-tags: 爬虫系列
-categories: Python
-abbrlink:
-date: 2018-08-27 13:56:09
----
 
 ![](http://p20tr36iw.bkt.clouddn.com/py_scrapy_mongodb.png)
 
@@ -288,4 +281,4 @@ class W2mysql(object):
 
 ## 4.项目地址
 
-[项目地址戳这里!!!](https://github.com/Light-City/scrapy_weather)
+[欢迎star,项目地址戳这里!!!](https://github.com/Light-City/scrapy_weather)
