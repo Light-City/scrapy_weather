@@ -26,7 +26,7 @@ class CqtianqiSpider(scrapy.Spider):
         item = WeatherItem()
         date = response.xpath('//div[@class="day7"]//ul[@class="week"]//li//b/text()').extract()
         week = response.xpath('//div[@class="day7"]//ul[@class="week"]//li//span/text()').extract()
-        base_url = 'https://www.tianqi.com'
+        base_url = 'http:'
         img = response.xpath('//div[@class="day7"]//ul[@class="week"]//li//img/@src').extract()
         imgs = []
         for i in range(7):
