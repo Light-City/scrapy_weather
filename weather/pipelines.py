@@ -12,13 +12,11 @@ import pymysql
 
 import requests
 from scrapy import Request
-
+pathpai = os.path.abspath(os.path.join(os.path.dirname('settings.py'),os.path.pardir))
 class WeatherPipeline(object):
     def process_item(self, item, spider):
-        # 获取当前工作目录
-        base_dir = os.getcwd()
         # 文件存在data目录下的weather.txt文件内
-        fiename = base_dir + '\\data\\weather.txt'
+        fiename = pathpai + '\\data\\weather.txt'
         # 从内存以追加的方式打开文件，并写入对应的数据
         with open(fiename, 'a', encoding='utf8') as f:
             for i in range(7):
@@ -34,7 +32,7 @@ class WeatherPipeline(object):
         for i in range(7):
             url = item['img'][i]
             file_name = url.split('/')[-1]
-            with open(base_dir + '\\data\\' + file_name, 'wb') as f:
+            with open(pathpai + '\\data\\' + file_name, 'wb') as f:
                 f.write(requests.get(url).content)
         return item
 
@@ -44,8 +42,7 @@ class W2json(object):
         讲爬取的信息保存到json
         方便调用
         '''
-        base_dir = os.getcwd()
-        filename = base_dir + '/data/weather.json'
+        filename = pathpai + '\\data\\weather.json'
 
         # 打开json文件，向里面以dumps的方式吸入数据
         # 注意需要有一个参数ensure_ascii=False ，不然数据会直接为utf编码的方式存入比如:“/xe15”
@@ -85,7 +82,7 @@ class W2mysql(object):
         将爬取的信息保存到mysql
         '''
 
-        connection = pymysql.connect(host='localhost', user='root', password='xxxxxx', db='scrapydb',
+        connection = pymysql.connect(host='localhost', user='root', password='xxxx', db='scrapydb',
                                      charset='utf8mb4')
         try:
 
@@ -97,7 +94,7 @@ class W2mysql(object):
                         item['weather'][i],
                         item['wind'][i], item['img'][i]))
 
-                    connection.commit()
+                connection.commit()
         # except pymysql.err.IntegrityError as e:
         #     print('重复数据，勿再次插入!')
         finally:
